@@ -1,5 +1,7 @@
 ﻿using Core.Domain;
+using Core.ModelViews;
 using Manager.Interfaces;
+using Manager.Validator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -27,24 +29,24 @@ public class ClientesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Cliente cliente)
-    {
-        var clienteInserido = await _clienteManager.InsertClienteAsync(cliente);
+    public async Task<IActionResult> Post(NovoCliente novoCliente)
+    {          
+        var clienteInserido = await _clienteManager.InsertClienteAsync(novoCliente);
 
-        return CreatedAtAction(nameof(Get),new { id = cliente.Id } , cliente);
+        return CreatedAtAction(nameof(Get),new { id = clienteInserido.Id } , clienteInserido);
     }
 
     [HttpPut]
-    public async Task<IActionResult> Put(Cliente cliente)
+    public async Task<IActionResult> Put(AlteraCliente clienteAlterado)
     {
-        var clienteAtualizado = await _clienteManager.UpdateClienteAsync(cliente);
+        var clienteAtualizado = await _clienteManager.UpdateClienteAsync(clienteAlterado);
 
         if (clienteAtualizado == null)
         {
             return NotFound();
         }
 
-        return Ok(cliente);
+        return Ok(clienteAtualizado);
     }
 
     [HttpDelete("{id}")]

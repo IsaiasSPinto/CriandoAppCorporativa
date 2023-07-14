@@ -1,4 +1,6 @@
-﻿using Core.Domain;
+﻿using AutoMapper;
+using Core.Domain;
+using Core.ModelViews;
 using Manager.Interfaces;
 
 namespace Manager.Implementation;
@@ -6,9 +8,11 @@ namespace Manager.Implementation;
 public class ClienteManager : IClienteManager
 {
     private readonly IClienteRepository _clienteRepository;
-    public ClienteManager(IClienteRepository clienteRepository)
+    private readonly IMapper _mapper;
+    public ClienteManager(IClienteRepository clienteRepository,IMapper mapper)
     {
         _clienteRepository = clienteRepository;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<Cliente>> GetClientesAsync()
@@ -21,13 +25,15 @@ public class ClienteManager : IClienteManager
         return await _clienteRepository.GetClienteAsync(id);
     }
 
-    public async Task<Cliente> InsertClienteAsync(Cliente cliente)
+    public async Task<Cliente> InsertClienteAsync(NovoCliente novoCliente)
     {
+        var cliente = _mapper.Map<Cliente>(novoCliente);
         return await _clienteRepository.InsertClienteAsync(cliente);
     }
 
-    public async Task<Cliente> UpdateClienteAsync(Cliente cliente)
+    public async Task<Cliente> UpdateClienteAsync(AlteraCliente clienteAlterado)
     {
+        var cliente = _mapper.Map<Cliente>(clienteAlterado);
         return await _clienteRepository.UpdateClienteAsync(cliente);
     }
 
