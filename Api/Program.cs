@@ -1,5 +1,8 @@
 using System;
 using Data.Context;
+using Data.Repository;
+using Manager.Implementation;
+using Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -8,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IClienteManager, ClienteManager>();
 
 var connectionString = builder.Configuration.GetConnectionString("Conn");
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString));
@@ -26,14 +32,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //using (var scope = app.Services.CreateScope())
-    //{
-    //    var dbContext = scope.ServiceProvider
-    //        .GetRequiredService<DatabaseContext>();
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider
+            .GetRequiredService<DatabaseContext>();
 
-    //    //dbContext.Database.Cre();
-    //    dbContext.Database.Migrate();
-    //}
+        dbContext.Database.Migrate();
+    }
     app.UseSwagger();
     app.UseSwaggerUI();
 }
