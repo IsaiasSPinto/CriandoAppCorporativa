@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Api.Configuration;
 

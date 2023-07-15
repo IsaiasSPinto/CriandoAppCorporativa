@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core</name>
+    </assembly>
+    <members>
+        <member name="T:Core.ModelViews.NovoCliente">
+            <summary>
+            Objeto utilizado para inserção de um novo cliente
+            </summary>
+        </member>
+        <member name="P:Core.ModelViews.NovoCliente.Nome">
+            <summary>
+            Nome do cliente
+            </summary>
+            <example>João do caminhão</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoCliente.Sexo">
+            <summary>
+            Sexo do cliente
+            </summary>
+            <example>M</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoCliente.Telefone">
+            <summary>
+            Telefone do cliente
+            </summary>
+            <example>54994533587</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoCliente.Documento">
+            <summary>
+            Documento do cliente: CNH,CPF,RG
+            </summary>
+            <example>99999999999</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoCliente.DataNascimento">
+            <summary>
+            Data de nascimento do cliente
+            </summary>
+            <example>1980-05-01</example>
+        </member>
+    </members>
+</doc>
