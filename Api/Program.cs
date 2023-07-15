@@ -1,35 +1,25 @@
 using Api.Configuration;
-using Data.Context;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 
-builder.Services.AddControllers();
+services.AddControllers();
 
-builder.Services.AddDependecyInjectionConfiguration();
+services.AddDatabaseConfiguration(builder.Configuration);
 
-builder.Services.AddAutoMapperConfiguration();
+services.AddDependecyInjectionConfiguration();
 
-builder.Services.AddFluentValidationConfiguration();
+services.AddAutoMapperConfiguration();
 
-builder.Services.AddSwaggerConfiguration();
+services.AddFluentValidationConfiguration();
 
-builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Conn")));
+services.AddSwaggerConfiguration();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbContext = scope.ServiceProvider
-            .GetRequiredService<DatabaseContext>();
+app.UseDatabaseConfiguration();
 
-        dbContext.Database.Migrate();
-    }
-
-    app.UseSwaggerConfiguration();
-}
+app.UseSwaggerConfiguration();
 
 app.UseHttpsRedirection();
 
