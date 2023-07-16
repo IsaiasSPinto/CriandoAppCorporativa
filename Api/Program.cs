@@ -27,6 +27,13 @@ try
 
     var app = builder.Build();
 
+    app.UseExceptionHandler("/error");
+
+    if(app.Environment.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+
     app.UseDatabaseConfiguration();
 
     app.UseSwaggerConfiguration();
@@ -57,7 +64,7 @@ static IConfigurationRoot GetConfiguration()
     var configuration = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json")
-        .AddJsonFile($"appsettings.{ambiente}.json")
+        .AddJsonFile($"appsettings.{ambiente}.json",optional: true)
         .Build();
     return configuration;
 }
