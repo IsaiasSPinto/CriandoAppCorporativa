@@ -51,6 +51,8 @@ public class ClienteRepository : IClienteRepository
     {
         var clienteConsultado = await _context.Clientes.FindAsync(id);
 
+        if (clienteConsultado == null) return;
+
         _context.Clientes.Remove(clienteConsultado);
         await _context.SaveChangesAsync();
     }

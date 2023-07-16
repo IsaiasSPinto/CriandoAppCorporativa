@@ -1,30 +1,68 @@
 using Api.Configuration;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;
+IConfigurationRoot configuration = GetConfiguration();
+ConfiguraLog(configuration);
 
-services.AddControllers();
+try
+{
+    Log.Information("Iniciando APP");
 
-services.AddDatabaseConfiguration(builder.Configuration);
+    var builder = WebApplication.CreateBuilder(args);
 
-services.AddDependecyInjectionConfiguration();
+    builder.Host.UseSerilog(Log.Logger);
+    var services = builder.Services;
 
-services.AddAutoMapperConfiguration();
+    services.AddControllers();
 
-services.AddFluentValidationConfiguration();
+    services.AddDatabaseConfiguration(builder.Configuration);
 
-services.AddSwaggerConfiguration();
+    services.AddDependecyInjectionConfiguration();
 
-var app = builder.Build();
+    services.AddAutoMapperConfiguration();
 
-app.UseDatabaseConfiguration();
+    services.AddFluentValidationConfiguration();
 
-app.UseSwaggerConfiguration();
+    services.AddSwaggerConfiguration();
 
-app.UseHttpsRedirection();
+    var app = builder.Build();
 
-app.UseAuthorization();
+    app.UseDatabaseConfiguration();
 
-app.MapControllers();
+    app.UseSwaggerConfiguration();
 
-app.Run();
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
+
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Ocorreu um erro");
+}
+finally
+{
+    Log.Information("Desligando...");
+    Log.CloseAndFlush();
+}
+
+static IConfigurationRoot GetConfiguration()
+{
+    var ambiente = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+    var configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json")
+        .AddJsonFile($"appsettings.{ambiente}.json")
+        .Build();
+    return configuration;
+}
+
+static void ConfiguraLog(IConfigurationRoot configuration)
+{
+    Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+}

@@ -11,9 +11,12 @@ namespace Api.Controllers;
 public class ClientesController : ControllerBase
 {
     private readonly IClienteManager _clienteManager;
-    public ClientesController(IClienteManager clienteManager)
+    private readonly ILogger<ClientesController> _logger;
+
+    public ClientesController(IClienteManager clienteManager, ILogger<ClientesController> logger)
     {
         _clienteManager = clienteManager;
+        _logger = logger;
     }
 
     /// <summary>
@@ -49,7 +52,8 @@ public class ClientesController : ControllerBase
     [ProducesResponseType(typeof(Cliente), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Post(NovoCliente novoCliente)
-    {          
+    {
+        _logger.LogInformation("Foi requisitado a inserção de um novo cliente");
         var clienteInserido = await _clienteManager.InsertClienteAsync(novoCliente);
 
         return CreatedAtAction(nameof(Get),new { id = clienteInserido.Id } , clienteInserido);
