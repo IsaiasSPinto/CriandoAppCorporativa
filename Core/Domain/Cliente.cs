@@ -10,4 +10,6 @@ public class Cliente
     public DateTime DataNascimento { get; set; }
     public DateTime Criacao { get; set; }
     public DateTime? UltimaAtualizacao { get; set; }
+
+    public Endereco Endereco { get; set; }
 }

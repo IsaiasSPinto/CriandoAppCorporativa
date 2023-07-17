@@ -29,4 +29,6 @@ public class NovoCliente
     /// </summary>
     /// <example>1980-05-01</example>
     public DateTime DataNascimento { get; set; }
+
+    public NovoEndereco Endereco { get; set; }
 }

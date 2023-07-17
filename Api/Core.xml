@@ -39,5 +39,23 @@
             </summary>
             <example>1980-05-01</example>
         </member>
+        <member name="P:Core.ModelViews.NovoEndereco.CEP">
+            <example>49000000</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoEndereco.Estado">
+            <example>RS</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoEndereco.Cidade">
+            <example>Caxias do Sul</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoEndereco.Logradouro">
+            <example>Rua A</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoEndereco.Numero">
+            <example>168</example>
+        </member>
+        <member name="P:Core.ModelViews.NovoEndereco.Complemento">
+            <example>Casa</example>
+        </member>
     </members>
 </doc>

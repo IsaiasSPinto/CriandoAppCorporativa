@@ -1,4 +1,5 @@
 using Api.Configuration;
+using Newtonsoft.Json;
 using Serilog;
 
 IConfigurationRoot configuration = GetConfiguration();
@@ -13,7 +14,7 @@ try
     builder.Host.UseSerilog(Log.Logger);
     var services = builder.Services;
 
-    services.AddControllers();
+    services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
     services.AddDatabaseConfiguration(builder.Configuration);
 

@@ -1,5 +1,4 @@
-﻿using Core.Domain;
-using Core.ModelViews;
+﻿using Core.ModelViews;
 using FluentValidation;
 
 namespace Manager.Validator;
@@ -14,6 +13,7 @@ public class NovoClienteValidator : AbstractValidator<NovoCliente>
         RuleFor(x => x.Documento).NotNull().NotEmpty().MinimumLength(4).MaximumLength(14);
         RuleFor(x => x.Telefone).NotNull().NotEmpty().Matches("[2-9][0-9]{10}").WithMessage("O telefone tem que ter o fotmato");
         RuleFor(x => x.Sexo).NotNull().NotEmpty().Must(IsMorF).WithMessage("Sexo precissa ser M ou F");
+        RuleFor(x => x.Endereco).SetValidator(new NovoEnderecoValidator());
     }
 
     private bool IsMorF(char sexo)

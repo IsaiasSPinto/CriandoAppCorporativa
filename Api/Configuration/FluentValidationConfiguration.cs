@@ -12,6 +12,8 @@ public static class FluentValidationConfiguration
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<NovoClienteValidator>();
         services.AddValidatorsFromAssemblyContaining<AlteraClienteValidator>();
+        services.AddValidatorsFromAssemblyContaining<NovoEnderecoValidator>();
+
 
         ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("pt-BR");
 
