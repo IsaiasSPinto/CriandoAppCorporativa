@@ -1,6 +1,6 @@
 ﻿using Core.Domain;
 using Core.ModelViews;
-using Manager.Interfaces;
+using Manager.Interfaces.Manager;
 using Manager.Validator;
 using Microsoft.AspNetCore.Mvc;
 

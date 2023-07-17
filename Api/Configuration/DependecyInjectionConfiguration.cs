@@ -1,6 +1,7 @@
 ﻿using Data.Repository;
 using Manager.Implementation;
-using Manager.Interfaces;
+using Manager.Interfaces.Manager;
+using Manager.Interfaces.Repository;
 
 namespace Api.Configuration;
 

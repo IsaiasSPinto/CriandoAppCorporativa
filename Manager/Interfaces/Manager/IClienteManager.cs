@@ -1,7 +1,7 @@
 ﻿using Core.Domain;
 using Core.ModelViews;
 
-namespace Manager.Interfaces;
+namespace Manager.Interfaces.Manager;
 
 public interface IClienteManager
 {

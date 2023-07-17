@@ -1,6 +1,6 @@
 ﻿using Core.Domain;
 using Data.Context;
-using Manager.Interfaces;
+using Manager.Interfaces.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repository;

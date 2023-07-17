@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Core.Domain;
 using Core.ModelViews;
-using Manager.Interfaces;
+using Manager.Interfaces.Manager;
+using Manager.Interfaces.Repository;
 
 namespace Manager.Implementation;
 

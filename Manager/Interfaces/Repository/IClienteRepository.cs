@@ -1,6 +1,6 @@
 ﻿using Core.Domain;
 
-namespace Manager.Interfaces;
+namespace Manager.Interfaces.Repository;
 
 public interface IClienteRepository
 {
