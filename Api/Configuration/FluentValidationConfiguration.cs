@@ -13,9 +13,8 @@ public static class FluentValidationConfiguration
         services.AddValidatorsFromAssemblyContaining<NovoClienteValidator>();
         services.AddValidatorsFromAssemblyContaining<AlteraClienteValidator>();
         services.AddValidatorsFromAssemblyContaining<NovoEnderecoValidator>();
-
+        services.AddValidatorsFromAssemblyContaining<NovoTelefoneValidator>();
 
         ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("pt-BR");
-
     }
 }

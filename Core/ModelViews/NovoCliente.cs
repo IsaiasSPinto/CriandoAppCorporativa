@@ -1,4 +1,6 @@
-﻿namespace Core.ModelViews;
+﻿using Core.Domain;
+
+namespace Core.ModelViews;
 /// <summary>
 /// Objeto utilizado para inserção de um novo cliente
 /// </summary>
@@ -14,11 +16,7 @@ public class NovoCliente
     /// </summary>
     /// <example>M</example>
     public char Sexo { get; set; }
-    /// <summary>
-    /// Telefone do cliente
-    /// </summary>
-    /// <example>54994533587</example>
-    public string Telefone { get; set; }
+    public ICollection<NovoTelefone> Telefones { get; set; }
     /// <summary>
     /// Documento do cliente: CNH,CPF,RG
     /// </summary>

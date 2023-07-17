@@ -15,12 +15,18 @@ public class ClienteRepository : IClienteRepository
 
     public async Task<IEnumerable<Cliente>> GetClientesAsync()
     {
-        return await _context.Clientes.Include(c => c.Endereco).AsNoTracking().ToListAsync();
+        return await _context.Clientes
+            .Include(c => c.Endereco)
+            .Include(c => c.Telefones)
+            .AsNoTracking().ToListAsync();
     }
 
     public async Task<Cliente> GetClienteAsync(int id)
     {
-        return await _context.Clientes.Include(c => c.Endereco).SingleOrDefaultAsync(c => c.Id == id);
+        return await _context.Clientes
+            .Include(c => c.Endereco)
+            .Include(c => c.Telefones)
+            .SingleOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<Cliente> InsertClienteAsync(Cliente cliente)
