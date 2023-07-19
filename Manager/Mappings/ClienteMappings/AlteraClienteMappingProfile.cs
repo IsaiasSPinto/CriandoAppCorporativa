@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Core.ModelViews.Cliente;
 using Core.Domain;
-using Core.ModelViews;
 
-namespace Manager.Mappings;
+namespace Manager.Mappings.ClienteMappings;
 
 public class AlteraClienteMappingProfile : Profile
 {

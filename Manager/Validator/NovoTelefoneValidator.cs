@@ -1,4 +1,4 @@
-﻿using Core.ModelViews;
+﻿using Core.ModelViews.Telefone;
 using FluentValidation;
 
 namespace Manager.Validator;

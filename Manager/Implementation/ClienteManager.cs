@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Core.Domain;
-using Core.ModelViews;
+using Core.ModelViews.Cliente;
 using Manager.Interfaces.Manager;
 using Manager.Interfaces.Repository;
 

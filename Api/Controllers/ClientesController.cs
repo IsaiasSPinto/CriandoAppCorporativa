@@ -1,5 +1,5 @@
 ﻿using Core.Domain;
-using Core.ModelViews;
+using Core.ModelViews.Cliente;
 using Manager.Interfaces.Manager;
 using Manager.Validator;
 using Microsoft.AspNetCore.Mvc;

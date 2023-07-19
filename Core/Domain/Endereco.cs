@@ -10,5 +10,5 @@ public class Endereco
     public string Numero { get; set; }
     public string Complemento { get; set; }
 
-    public Medico Cliente { get; set; }
+    public Cliente Cliente { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using Core.ModelViews;
+﻿using Core.ModelViews.Cliente;
 using FluentValidation;
 
 namespace Manager.Validator;

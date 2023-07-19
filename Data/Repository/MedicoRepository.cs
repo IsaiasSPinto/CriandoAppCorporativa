@@ -29,13 +29,26 @@ public class MedicoRepository : IMedicoRepository
     public async Task<Medico> InsertMedicoAsync(Medico medico)
     {
         await _context.Medicos.AddAsync(medico);
+
+        await InsertMedicoEspecialidades(medico);
+
         await _context.SaveChangesAsync();
 
         return medico;
     }
+
+    private async Task InsertMedicoEspecialidades(Medico medico)
+    {
+        foreach (var especialidade in medico.Especialidades)
+        {
+            var especialidadeConsultada = await _context.Especialidades.AsNoTracking().FirstOrDefaultAsync(x => x.Id == especialidade.Id);
+            _context.Entry(especialidade).CurrentValues.SetValues(especialidadeConsultada);
+        }
+    }
+
     public async Task<Medico> UpdateMedicoAsync(Medico medico)
     {
-        var medicoConsultado = await _context.Clientes.FindAsync(medico.Id);
+        var medicoConsultado = await _context.Medicos.Include(x => x.Especialidades).SingleOrDefaultAsync(x => x.Id == medico.Id);
 
         if (medicoConsultado == null)
         {
@@ -44,18 +57,31 @@ public class MedicoRepository : IMedicoRepository
 
         _context.Entry(medicoConsultado).CurrentValues.SetValues(medico);
 
+        await UpdateMedicoEspecialidades(medico, medicoConsultado);
+
         await _context.SaveChangesAsync();
 
-        return medico;
+        return medicoConsultado;
+    }
+
+    private async Task UpdateMedicoEspecialidades(Medico medico, Medico medicoConsultado)
+    {
+        medicoConsultado.Especialidades.Clear();
+
+        foreach (var especialidade in medico.Especialidades)
+        {
+            var especialidadeConsultada = await _context.Especialidades.FindAsync(especialidade.Id);
+            medicoConsultado.Especialidades.Add(especialidadeConsultada);
+        }
     }
 
     public async Task DeleteMedicoAsync(int id)
     {
-        var medicoConsultado = await _context.Clientes.FindAsync(id);
+        var medicoConsultado = await _context.Medicos.FindAsync(id);
 
         if (medicoConsultado == null) return;
 
-        _context.Clientes.Remove(medicoConsultado);
+        _context.Medicos.Remove(medicoConsultado);
         await _context.SaveChangesAsync();
     }
 

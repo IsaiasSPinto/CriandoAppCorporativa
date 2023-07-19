@@ -1,13 +1,13 @@
 ﻿using Core.Domain;
-using Core.ModelViews;
+using Core.ModelViews.Medico;
 
 namespace Manager.Interfaces.Manager;
 
 public interface IMedicoManager
 {
-    Task<IEnumerable<Medico>> GetMedicosAsync();
-    Task<Medico> GetMedicoAsync(int id);
-    Task<Medico> InsertMedicoAsync(NovoMedico novoCliente);
-    Task<Medico> UpdateMedicoAsync(AlteraMedico clienteAlterado);
+    Task<IEnumerable<MedicoView>> GetMedicosAsync();
+    Task<MedicoView> GetMedicoAsync(int id);
+    Task<MedicoView> InsertMedicoAsync(NovoMedico novoCliente);
+    Task<MedicoView> UpdateMedicoAsync(AlteraMedico clienteAlterado);
     Task DeleteMedicoAsync(int id);
 }

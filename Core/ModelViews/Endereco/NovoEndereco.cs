@@ -1,4 +1,4 @@
-﻿namespace Core.ModelViews;
+﻿namespace Core.ModelViews.Endereco;
 public class NovoEndereco
 {
     /// <example>49000000</example>

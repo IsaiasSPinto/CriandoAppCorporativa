@@ -1,4 +1,4 @@
-﻿namespace Core.ModelViews
+﻿namespace Core.ModelViews.Cliente
 {
     public class AlteraCliente : NovoCliente
     {

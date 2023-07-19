@@ -1,4 +1,4 @@
-﻿namespace Core.ModelViews;
+﻿namespace Core.ModelViews.Error;
 
 public class ErrorResponse
 {

@@ -1,4 +1,4 @@
-﻿namespace Core.ModelViews;
+﻿namespace Core.ModelViews.Telefone;
 public class NovoTelefone
 {
     /// <summary>

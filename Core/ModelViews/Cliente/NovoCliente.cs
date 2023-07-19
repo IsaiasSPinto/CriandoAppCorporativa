@@ -1,6 +1,8 @@
 ﻿using Core.Domain;
+using Core.ModelViews.Endereco;
+using Core.ModelViews.Telefone;
 
-namespace Core.ModelViews;
+namespace Core.ModelViews.Cliente;
 /// <summary>
 /// Objeto utilizado para inserção de um novo cliente
 /// </summary>

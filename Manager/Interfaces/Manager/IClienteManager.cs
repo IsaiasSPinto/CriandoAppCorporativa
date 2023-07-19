@@ -1,5 +1,5 @@
 ﻿using Core.Domain;
-using Core.ModelViews;
+using Core.ModelViews.Cliente;
 
 namespace Manager.Interfaces.Manager;
 

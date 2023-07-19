@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Core.Domain;
-using Core.ModelViews;
+using Core.ModelViews.Cliente;
+using Core.ModelViews.Endereco;
+using Core.ModelViews.Telefone;
 
-namespace Manager.Mappings;
+namespace Manager.Mappings.ClienteMappings;
 
 public class NovoClienteMappingProfile : Profile
 {

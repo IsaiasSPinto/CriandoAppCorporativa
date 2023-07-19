@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using Core.ModelViews;
+using Core.ModelViews.Error;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
