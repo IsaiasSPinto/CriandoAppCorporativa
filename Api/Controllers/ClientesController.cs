@@ -1,7 +1,6 @@
 ﻿using Core.Domain;
 using Core.ModelViews.Cliente;
 using Manager.Interfaces.Manager;
-using Manager.Validator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -23,8 +22,8 @@ public class ClientesController : ControllerBase
     ///  Retorna todos os clientes cadastrados
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(typeof(Cliente),StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails),StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Get()
     {
         return Ok(await _clienteManager.GetClientesAsync());
@@ -56,7 +55,7 @@ public class ClientesController : ControllerBase
         _logger.LogInformation("Foi requisitado a inserção de um novo cliente");
         var clienteInserido = await _clienteManager.InsertClienteAsync(novoCliente);
 
-        return CreatedAtAction(nameof(Get),new { id = clienteInserido.Id } , clienteInserido);
+        return CreatedAtAction(nameof(Get), new { id = clienteInserido.Id }, clienteInserido);
     }
 
     /// <summary>

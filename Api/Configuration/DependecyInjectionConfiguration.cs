@@ -14,5 +14,7 @@ public static class DependecyInjectionConfiguration
 
         services.AddScoped<IMedicoRepository, MedicoRepository>();
         services.AddScoped<IMedicoManager, MedicoManager>();
+
+				services.AddScoped<IEspecialidadeRepository, EspecialidadeRepository>();
     }
 }
