@@ -14,7 +14,12 @@ public class NovoClienteMappingProfile : Profile
             .ForMember(d => d.Criacao, o => o.MapFrom(x => DateTime.Now))
             .ForMember(d => d.DataNascimento, o => o.MapFrom(x => x.DataNascimento.Date));
 
-        CreateMap<NovoEndereco, Endereco>();
+				CreateMap<Cliente, ClienteView>();
+				CreateMap<ClienteView, Cliente>();
+
+				CreateMap<NovoEndereco, Endereco>();
         CreateMap<NovoTelefone, Telefone>();
-    }
+				CreateMap<Telefone, TelefoneView>();
+
+		}
 }

@@ -5,9 +5,9 @@ namespace Manager.Interfaces.Manager;
 
 public interface IClienteManager
 {
-    Task<IEnumerable<Cliente>> GetClientesAsync();
-    Task<Cliente> GetClienteAsync(int id);
-    Task<Cliente> InsertClienteAsync(NovoCliente novoCliente);
-    Task<Cliente> UpdateClienteAsync(AlteraCliente clienteAlterado);
+    Task<IEnumerable<ClienteView>> GetClientesAsync();
+    Task<ClienteView> GetClienteAsync(int id);
+    Task<ClienteView> InsertClienteAsync(NovoCliente novoCliente);
+    Task<ClienteView> UpdateClienteAsync(AlteraCliente clienteAlterado);
     Task DeleteClienteAsync(int id);
 }

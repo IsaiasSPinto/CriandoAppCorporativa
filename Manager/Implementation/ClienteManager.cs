@@ -1,6 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Core.Domain;
 using Core.ModelViews.Cliente;
+using Core.ModelViews.Medico;
 using Manager.Interfaces.Manager;
 using Manager.Interfaces.Repository;
 
@@ -16,26 +18,26 @@ public class ClienteManager : IClienteManager
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<Cliente>> GetClientesAsync()
+    public async Task<IEnumerable<ClienteView>> GetClientesAsync()
     {
-        return await _clienteRepository.GetClientesAsync();
+				return _mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteView>>(await _clienteRepository.GetClientesAsync());
     }
 
-    public async Task<Cliente> GetClienteAsync(int id)
+    public async Task<ClienteView> GetClienteAsync(int id)
     {
-        return await _clienteRepository.GetClienteAsync(id);
+        return _mapper.Map<ClienteView>(await _clienteRepository.GetClienteAsync(id));
     }
 
-    public async Task<Cliente> InsertClienteAsync(NovoCliente novoCliente)
+    public async Task<ClienteView> InsertClienteAsync(NovoCliente novoCliente)
     {
         var cliente = _mapper.Map<Cliente>(novoCliente);
-        return await _clienteRepository.InsertClienteAsync(cliente);
+        return _mapper.Map<ClienteView>(await _clienteRepository.InsertClienteAsync(cliente));
     }
 
-    public async Task<Cliente> UpdateClienteAsync(AlteraCliente clienteAlterado)
+    public async Task<ClienteView> UpdateClienteAsync(AlteraCliente clienteAlterado)
     {
         var cliente = _mapper.Map<Cliente>(clienteAlterado);
-        return await _clienteRepository.UpdateClienteAsync(cliente);
+        return _mapper.Map<ClienteView>(await _clienteRepository.UpdateClienteAsync(cliente));
     }
 
     public async Task DeleteClienteAsync(int id)

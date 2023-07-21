@@ -22,12 +22,11 @@ public class ClientesController : ControllerBase
     ///  Retorna todos os clientes cadastrados
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Get()
     {
 				var clientes = await _clienteManager.GetClientesAsync();
-
 				if (clientes.Any())
 				{
 						return Ok(clientes);
@@ -41,7 +40,7 @@ public class ClientesController : ControllerBase
     /// </summary>
     /// <param name="id" example="1">Id do cliente.</param>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Get(int id)
@@ -55,7 +54,7 @@ public class ClientesController : ControllerBase
     /// </summary>
     /// <param name="novoCliente"></param>
     [HttpPost]
-    [ProducesResponseType(typeof(Cliente), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ClienteView), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Post(NovoCliente novoCliente)
     {
@@ -70,7 +69,7 @@ public class ClientesController : ControllerBase
     /// </summary>
     /// <param name="clienteAlterado"></param>
     [HttpPut]
-    [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Put(AlteraCliente clienteAlterado)
@@ -91,8 +90,7 @@ public class ClientesController : ControllerBase
     /// <param name="id" example="1">Id do cliente</param>
     /// <remarks>Ao remover um cliente o mesmo será removido permanentemente da base de dados.</remarks>
     [HttpDelete("{id}")]
-    [ProducesResponseType(typeof(Cliente), StatusCodes.Status204NoContent)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete(int id)
     {
