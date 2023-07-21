@@ -1,8 +1,10 @@
 ﻿using Core.Domain;
 using Core.ModelViews.Cliente;
 using Core.ModelViews.Medico;
+using Data.Repository;
 using Manager.Implementation;
 using Manager.Interfaces.Manager;
+using Manager.Validator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -54,7 +56,8 @@ public class MedicosController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Post(NovoMedico novoMedico)
     {
-        var medicoInserido = await _medicoManager.InsertMedicoAsync(novoMedico);
+
+				var medicoInserido = await _medicoManager.InsertMedicoAsync(novoMedico);
 
         return CreatedAtAction(nameof(Get), new { id = medicoInserido.Id }, medicoInserido);
     }

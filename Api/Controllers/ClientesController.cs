@@ -26,7 +26,14 @@ public class ClientesController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Get()
     {
-        return Ok(await _clienteManager.GetClientesAsync());
+				var clientes = await _clienteManager.GetClientesAsync();
+
+				if (clientes.Any())
+				{
+						return Ok(clientes);
+				}
+
+				return NotFound();
     }
 
     /// <summary>

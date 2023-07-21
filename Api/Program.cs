@@ -1,5 +1,7 @@
+using System.Text.Json.Serialization;
 using Api.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Serilog;
 
 IConfigurationRoot configuration = GetConfiguration();
@@ -14,7 +16,13 @@ try
     builder.Host.UseSerilog(Log.Logger);
     var services = builder.Services;
 
-    services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+		services.AddControllers()
+				.AddNewtonsoftJson(x =>
+				{
+						x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+						x.SerializerSettings.Converters.Add(new StringEnumConverter());
+				})
+				.AddJsonOptions(p => p.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
     services.AddDatabaseConfiguration(builder.Configuration);
 

@@ -17,7 +17,7 @@ public class NovoCliente
     /// Sexo do cliente
     /// </summary>
     /// <example>M</example>
-    public char Sexo { get; set; }
+    public SexoView Sexo { get; set; }
     public ICollection<NovoTelefone> Telefones { get; set; }
     /// <summary>
     /// Documento do cliente: CNH,CPF,RG

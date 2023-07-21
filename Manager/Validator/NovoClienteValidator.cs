@@ -12,12 +12,7 @@ public class NovoClienteValidator : AbstractValidator<NovoCliente>
         RuleFor(x => x.DataNascimento).NotNull().NotEmpty().LessThan(DateTime.Now).GreaterThan(DateTime.Now.AddYears(-130));
         RuleFor(x => x.Documento).NotNull().NotEmpty().MinimumLength(4).MaximumLength(14);
         RuleFor(x => x.Telefones).NotNull().NotEmpty();
-        RuleFor(x => x.Sexo).NotNull().NotEmpty().Must(IsMorF).WithMessage("Sexo precissa ser M ou F");
+        RuleFor(x => x.Sexo).NotNull();
         RuleFor(x => x.Endereco).SetValidator(new NovoEnderecoValidator());
-    }
-
-    private bool IsMorF(char sexo)
-    {
-        return sexo == 'M' || sexo == 'F';
     }
 }

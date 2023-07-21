@@ -1,10 +1,12 @@
-﻿namespace Core.Domain;
+﻿using Core.Domain.Enum;
+
+namespace Core.Domain;
 
 public class Cliente
 {
     public int Id { get; set; }
     public string Nome { get; set; }
-    public char Sexo { get; set; }
+    public Sexo Sexo { get; set; }
     public ICollection<Telefone> Telefones { get; set; }
     public string Documento { get; set; }
     public DateTime DataNascimento { get; set; }

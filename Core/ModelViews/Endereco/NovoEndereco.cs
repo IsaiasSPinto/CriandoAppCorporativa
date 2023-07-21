@@ -4,7 +4,7 @@ public class NovoEndereco
     /// <example>49000000</example>
     public int CEP { get; set; }
     /// <example>RS</example>
-    public string Estado { get; set; }
+    public EstadoView Estado { get; set; }
     /// <example>Caxias do Sul</example>
     public string Cidade { get; set; }
     /// <example>Rua A</example>

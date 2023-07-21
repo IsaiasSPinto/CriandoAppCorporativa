@@ -10,11 +10,11 @@ public class ReferenciaEspecialidadeValidator : AbstractValidator<ReferenciaEspe
 		{
 				_repository = repository;
 				RuleFor(x => x.Id).NotEmpty().NotNull().GreaterThan(0)
-						.MustAsync(async (id,cancelar) => await ExisteNaBase(id)).WithMessage("Especialidade não cadastrada.");
+						.Must(ExisteNaBase).WithMessage("Especialidade não cadastrada.");
 		}
 
-		private async Task<bool> ExisteNaBase(int id)
+		private bool ExisteNaBase(int id)
 		{
-				return await _repository.ExisteAsync(id);
+				return  _repository.ExisteAsync(id).Result;
 		}
 }

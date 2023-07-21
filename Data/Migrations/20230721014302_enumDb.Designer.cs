@@ -4,6 +4,7 @@ using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230721014302_enumDb")]
+    partial class enumDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +57,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes", (string)null);
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("Core.Domain.Endereco", b =>
@@ -87,7 +90,7 @@ namespace Data.Migrations
 
                     b.HasKey("ClienteId");
 
-                    b.ToTable("Enderecos", (string)null);
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("Core.Domain.Especialidade", b =>
@@ -104,7 +107,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Especialidades", (string)null);
+                    b.ToTable("Especialidades");
                 });
 
             modelBuilder.Entity("Core.Domain.Medico", b =>
@@ -124,7 +127,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Medicos", (string)null);
+                    b.ToTable("Medicos");
                 });
 
             modelBuilder.Entity("Core.Domain.Telefone", b =>
@@ -137,7 +140,7 @@ namespace Data.Migrations
 
                     b.HasKey("ClienteId", "Numero");
 
-                    b.ToTable("Telefones", (string)null);
+                    b.ToTable("Telefones");
                 });
 
             modelBuilder.Entity("EspecialidadeMedico", b =>
@@ -152,7 +155,7 @@ namespace Data.Migrations
 
                     b.HasIndex("MedicosId");
 
-                    b.ToTable("EspecialidadeMedico", (string)null);
+                    b.ToTable("EspecialidadeMedico");
                 });
 
             modelBuilder.Entity("Core.Domain.Endereco", b =>
