@@ -1,5 +1,4 @@
-﻿using Core.Domain;
-using Core.ModelViews.Cliente;
+﻿using Core.ModelViews.Cliente;
 using Manager.Interfaces.Manager;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +22,8 @@ public class ClientesController : ControllerBase
     /// </summary>
     [HttpGet]
     [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Get()
     {
 				var clientes = await _clienteManager.GetClientesAsync();
@@ -45,7 +45,13 @@ public class ClientesController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Get(int id)
     {
-        return Ok(await _clienteManager.GetClienteAsync(id));
+				var cliente = await _clienteManager.GetClienteAsync(id);
+				if (cliente.Id == 0)
+				{
+						return NotFound();
+				}
+
+				return Ok(cliente);
     }
 
 
@@ -94,8 +100,13 @@ public class ClientesController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete(int id)
     {
-        await _clienteManager.DeleteClienteAsync(id);
+				var clienteExcluido = _clienteManager.GetClienteAsync(id);
+				if(clienteExcluido == null)
+				{
+						return NotFound();
+				}
 
+        await _clienteManager.DeleteClienteAsync(id);
         return NoContent();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Core.ModelViews.Cliente;
 using Bogus;
-using Core.Domain.Enum;
 using Bogus.Extensions.Brazil;
 using CL.FakeData.TelefoneData;
 using CL.FakeData.EnderecoData;
