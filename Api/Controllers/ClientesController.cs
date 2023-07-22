@@ -46,7 +46,7 @@ public class ClientesController : ControllerBase
     public async Task<IActionResult> Get(int id)
     {
 				var cliente = await _clienteManager.GetClienteAsync(id);
-				if (cliente.Id == 0)
+				if (cliente == null)
 				{
 						return NotFound();
 				}

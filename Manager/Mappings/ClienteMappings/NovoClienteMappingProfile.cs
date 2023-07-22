@@ -20,6 +20,9 @@ public class NovoClienteMappingProfile : Profile
 				CreateMap<NovoEndereco, Endereco>();
         CreateMap<NovoTelefone, Telefone>();
 				CreateMap<Telefone, TelefoneView>();
+				CreateMap<TelefoneView, Telefone>();
 
+				CreateMap<Endereco, EnderecoView>();
+				CreateMap<EnderecoView, Endereco>();
 		}
 }

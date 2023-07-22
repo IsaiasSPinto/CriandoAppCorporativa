@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CriandoAppCorporativa\Data\Data.csproj" />
-    <ProjectReference Include="..\CriandoAppCorporativa\FakeData\CL.FakeData.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\FakeData\CL.FakeData.csproj" />
   </ItemGroup>
 
 </Project>

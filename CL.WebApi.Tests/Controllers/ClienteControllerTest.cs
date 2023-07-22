@@ -2,6 +2,7 @@
 using CL.FakeData.ClienteData;
 using Core.ModelViews.Cliente;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 
 namespace CL.WebApi.Tests.Controllers;
 
@@ -63,7 +64,7 @@ public class ClienteControllerTest
 		[Fact]
 		public async Task GetClienteshouldReturnNotFound()
 		{
-				_clienteManager.GetClienteAsync(Arg.Any<int>()).Returns(new ClienteView());
+				_clienteManager.GetClienteAsync(Arg.Any<int>()).ReturnsNull();
 
 				var resultado = (StatusCodeResult)await _clientesController.Get(1);
 
