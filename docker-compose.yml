@@ -6,8 +6,6 @@ services:
     build:
       context: .
       dockerfile: Api/Dockerfile
-    volumes:
-      - C:/pef/api/logs:/logs
   sqlserver:
     image: mcr.microsoft.com/mssql/server
     environment:

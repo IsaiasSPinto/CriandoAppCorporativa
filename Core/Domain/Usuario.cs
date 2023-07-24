@@ -3,4 +3,6 @@ public class Usuario
 {
 		public string Login { get; set; }
 		public string Senha { get; set; }
+
+		public ICollection<Funcao> Funcoes { get; set; }  = new HashSet<Funcao>();
 }

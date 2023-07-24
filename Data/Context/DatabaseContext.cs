@@ -16,8 +16,9 @@ public class DatabaseContext : DbContext
     public DbSet<Medico> Medicos { get; set; }
     public DbSet<Especialidade> Especialidades { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
+		public DbSet<Funcao> Funcoes { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
