@@ -1,5 +1,6 @@
 ﻿using Manager.Mappings.ClienteMappings;
 using Manager.Mappings.MedicoMappings;
+using Manager.Mappings.UsuarioMappings;
 
 namespace Api.Configuration;
 
@@ -9,6 +10,7 @@ public static class AutoMapperConfiguration
     {
         services.AddAutoMapper(typeof(NovoClienteMappingProfile), typeof(AlteraClienteMappingProfile));
         services.AddAutoMapper(typeof(NovoMedicoMappingProfile));
+				services.AddAutoMapper(typeof(UsuarioMappingProfile));
 
     }
 }

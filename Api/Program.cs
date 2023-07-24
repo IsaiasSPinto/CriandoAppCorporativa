@@ -4,17 +4,17 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Serilog;
 
-IConfigurationRoot configuration = GetConfiguration();
-ConfiguraLog(configuration);
+//IConfigurationRoot configuration = GetConfiguration();
+//ConfiguraLog(configuration);
 
 try
 {
-    Log.Information("Iniciando APP");
+		//Log.Information("Iniciando APP");
 
-    var builder = WebApplication.CreateBuilder(args);
+		var builder = WebApplication.CreateBuilder(args);
 
-    builder.Host.UseSerilog(Log.Logger);
-    var services = builder.Services;
+		//builder.Host.UseSerilog(Log.Logger);
+		var services = builder.Services;
 
 		services.AddControllers()
 				.AddNewtonsoftJson(x =>
@@ -58,12 +58,12 @@ try
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "Ocorreu um erro");
+		//Log.Fatal(ex, "Ocorreu um erro");
 }
 finally
 {
-    Log.Information("Desligando...");
-    Log.CloseAndFlush();
+		//Log.Information("Desligando...");
+		//Log.CloseAndFlush();
 }
 
 static IConfigurationRoot GetConfiguration()
