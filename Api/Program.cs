@@ -3,8 +3,6 @@ using Api.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
@@ -16,6 +14,8 @@ services.AddControllers()
 				x.SerializerSettings.Converters.Add(new StringEnumConverter());
 		})
 		.AddJsonOptions(p => p.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
+services.AddJWTConfiguration(builder.Configuration);
 
 services.AddDatabaseConfiguration(builder.Configuration);
 
@@ -42,7 +42,7 @@ app.UseSwaggerConfiguration();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseJWTConfiguration();
 
 app.MapControllers();
 
