@@ -1,5 +1,6 @@
 ﻿using Core.ModelViews.Cliente;
 using Manager.Interfaces.Manager;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -20,6 +21,7 @@ public class ClientesController : ControllerBase
     /// <summary>
     ///  Retorna todos os clientes cadastrados
     /// </summary>
+		[Authorize]
     [HttpGet]
     [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -35,11 +37,12 @@ public class ClientesController : ControllerBase
 				return NotFound();
     }
 
-    /// <summary>
-    /// Retorna um cliente consultado pelo id.
-    /// </summary>
-    /// <param name="id" example="1">Id do cliente.</param>
-    [HttpGet("{id}")]
+		/// <summary>
+		/// Retorna um cliente consultado pelo id.
+		/// </summary>
+		/// <param name="id" example="1">Id do cliente.</param>
+		[Authorize]
+		[HttpGet("{id}")]
     [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -59,8 +62,9 @@ public class ClientesController : ControllerBase
     /// Insere um novo cliente
     /// </summary>
     /// <param name="novoCliente"></param>
+		[Authorize]
     [HttpPost]
-    [ProducesResponseType(typeof(ClienteView), StatusCodes.Status201Created)]
+		[ProducesResponseType(typeof(ClienteView), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Post(NovoCliente novoCliente)
     {
@@ -74,8 +78,9 @@ public class ClientesController : ControllerBase
     /// Altera um cliente existente.
     /// </summary>
     /// <param name="clienteAlterado"></param>
+		[Authorize]
     [HttpPut]
-    [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Put(AlteraCliente clienteAlterado)
@@ -95,8 +100,9 @@ public class ClientesController : ControllerBase
     /// </summary>
     /// <param name="id" example="1">Id do cliente</param>
     /// <remarks>Ao remover um cliente o mesmo será removido permanentemente da base de dados.</remarks>
+		[Authorize]
     [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete(int id)
     {
